@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Opcoes = styled.ul`
@@ -15,14 +16,33 @@ const Opcao = styled.li`
     cursor: pointer;
 `
 
-const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE']
+// const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'ESTANTE']
+const textoOpcoes = [
+  {
+    texto:'CATEGORIAS',
+    rota: '/categorias'
+  },
+  {
+    texto: 'FAVORITOS',
+    rota: '/favoritos'
+  },
+  {
+    texto:'MINHA ESTANTE',
+    rota:'/estante'
+  }
+]
+
 
 function OpcoesHeader(params) {
     return(
         <Opcoes>
           {/* Usando javascript para varrer um array */}
-          {textoOpcoes.map((texto) =>(
-            <Opcao><p>{texto}</p></Opcao>
+          {textoOpcoes.map((opcao) => (
+              <Link to={opcao.rota} key={opcao.texto}>
+              <Opcao>
+                <p>{opcao.texto}</p>
+              </Opcao>
+            </Link>
           ))}
         </Opcoes>
     );
